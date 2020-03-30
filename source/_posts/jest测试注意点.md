@@ -1,7 +1,8 @@
 ---
 title: jest测试注意点
 date: 2019-08-20 16:20:01
-tags:
+tags: [测试]
+categories: 技术文档
 ---
 
 ## `module style`
