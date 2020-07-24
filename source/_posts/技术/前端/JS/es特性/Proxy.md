@@ -1,3 +1,9 @@
+---
+title: JS Proxy
+date: 2020-07-20 16:29:13
+tags: ["JS", "前端", "语言"]
+---
+
 # Proxy
 
 # Proxy可以取消代理

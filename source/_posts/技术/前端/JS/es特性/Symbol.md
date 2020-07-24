@@ -1,3 +1,8 @@
+---
+title: JS Symbol
+date: 2020-07-20 16:29:13
+tags: ["JS", "前端", "语言"]
+---
 # Symbol
 
 ## Symbol.species
