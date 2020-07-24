@@ -8,4 +8,4 @@ public/
 .idea/
 .vscode/
 package-lock.json
-themes/concise/
+themes
