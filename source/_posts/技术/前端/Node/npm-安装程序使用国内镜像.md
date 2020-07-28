@@ -14,7 +14,7 @@ tags:
 
 `nrm` 是用来切换npm源的一个工具。切过去之后可以很方便的切换回来，比如我要使用cnpm的镜像：
 
-  ![nrm use taobao](npm-安装程序使用国内镜像/nrmuse.png)
+  ![nrm use taobao](nrmuse.png)
 
 但是我觉得还是不满足，在这里推荐另外一中包安装工具`yarn`，它有一大优势就是不用每次都去远程服务器上取包，他会在本地保存一部分，当我们安装包的使用，直接copy一份就好。
 
@@ -26,7 +26,7 @@ tags:
 
 换源：
 
-  ![yrm use taobao](npm-安装程序使用国内镜像/yrmuse.png)
+  ![yrm use taobao](yrmuse.png)
 
 
 ## 添加cdnurl
