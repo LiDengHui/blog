@@ -1,12 +1,30 @@
 
-- [1. Paste Image](#1-paste-image)
-  - [1.1. 常用变量](#11-常用变量)
-  - [1.2. 常用操作](#12-常用操作)
-  - [常用配置](#常用配置)
-  
+---
+title: Paste Image
+tags:
+    - markdown
+    - vscode
+categories:
+    - 技术文档
+    - 工具
+    - markdown
+date: 2020-07-30 23:52:11
+---
+
 # 1. Paste Image
 
 MarkDown 编辑时粘贴图片处理
+
+## 安装 Hexo
+
+> npm install hexo-simple-image
+
+在写markdown时用相对路径
+
+![](./PasteImage/2020-08-08-17-24-19.png)
+
+
+在外部`_config.yml`中 开启`post_asset_folder: true`
 
 ## 1.1. 常用变量
 

@@ -87,7 +87,7 @@ console.log(p.name)
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-09-18-29-32.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-09-18-29-32.png)
 
 遗留问题：
 
@@ -132,7 +132,7 @@ p.unshift('赵六')
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-09-21-28-57.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-09-21-28-57.png)
 
 解析：数组将内部对象，依次往后移动一位，最后在开始位置插入`赵六`数据，所以需要重复的`get`,`set`特别，是最后一个值`王五`，移动到 3 号位置的时候，3 号位置没有被`Object.defineProperty`改写，因此打印出来的数据上 3 号位置没有`get`、`set`方法，也就没有触发`set`,`console.dir(p)`后也就没有触发`get`打印`get 3 王五`
 
@@ -234,7 +234,7 @@ p.name
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-09-22-17-55.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-09-22-17-55.png)
 
 ### vue3 解决了 vue2 什么问题
 
@@ -275,7 +275,7 @@ p.name.first = '李'
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-10-04-51-01.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-10-04-51-01.png)
 
 从 console 可以看出，只触发 data 的 name 的 get 方法，没有触发 set，也就是说 Proxy 只能监听代理数据的子项，不能监听代理数据的孙子项。
 
@@ -316,7 +316,7 @@ p.name.first = '李'
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-10-05-03-54.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-10-05-03-54.png)
 
 如图：监听到了 p.name.first 的 set 事件，这样就解决了数据递归遍历的噩运，提高了速度。
 
@@ -349,7 +349,7 @@ console.dir(p[1])
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-09-22-23-59.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-09-22-23-59.png)
 
 当 data 为数组的时候也可以监听到。但是 `unshift`哪
 
@@ -386,6 +386,6 @@ p.unshift('赵六')
 
 console
 
-![](Vue解析-defineProperty与Proxy/2020-07-10-05-15-55.png)
+![](./Vue解析-defineProperty与Proxy/2020-07-10-05-15-55.png)
 
 由此可见：在 vue3 中使用了 Proxy 也没有解决触发多次 set 事件的问题。

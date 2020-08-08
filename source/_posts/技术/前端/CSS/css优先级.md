@@ -7,4 +7,4 @@ tags:
 
 important  >  id >  class >  *
 
-![logo](css优先级/css优先级.png)
+![logo](./css优先级/css优先级.png)
