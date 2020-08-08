@@ -1,0 +1,4 @@
+[submodule "themes/anodyne"]
+  path = themes/anodyne
+  url = git@github.com:LiDengHui/hexo-theme-anodyne.git
+  
