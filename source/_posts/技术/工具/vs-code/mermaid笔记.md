@@ -69,5 +69,7 @@ classDiagram
 
 http://lightzhan.xyz/index.php/2020/05/10/markdown-mermaid-tutorial-2/
 
+http://lightzhan.xyz/index.php/2020/04/06/markdown-mermaid-tutorial/
+
 
 
