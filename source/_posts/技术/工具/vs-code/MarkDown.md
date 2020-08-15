@@ -16,3 +16,4 @@
 | Ctrl+R | 横线     |
 | Ctrl+Z | 撤销     |
 | Ctrl+Y | 重做     |
+
