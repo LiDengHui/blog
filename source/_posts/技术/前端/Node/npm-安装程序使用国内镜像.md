@@ -38,10 +38,13 @@ tags:
 但是在项目里并不是一个人来开发，所以不可能每个人都运行这样一条命令或写成shell，太low。
 
 所以，这里提供更专业一点的办法，在package.json的更目录建立`.npmrc`的文件。内部加入
-    
+
+```conf    
     chromedriver_cdnurl=http://npm.taobao.org/mirrors/chromedriver
     selenium_cdnurl=http://npm.taobao.org/mirrorss/selenium
     phantomjs_cdnurl=http://npm.taobao.org/mirrors/phantomjs
     electron_mirror=https://npm.taobao.org/mirrors/electron
-
+    node_sassurl=http://npm.taobao.org/mirrors/node_sass
+    puppeteer_cdnurl=http://npm.taobao.org/mirrors/puppeteer
+```
 后面的链接可以更改成其他的镜像文件，也可以（需要什么加什么）。
