@@ -2,6 +2,11 @@
 title: Vue解析 defineProperty与Proxy
 date: 2020-07-20 10:01:37
 tags:
+  - Vue
+categories:
+  - 技术文档
+  - 前端
+  - Vue
 ---
 
 # Vue 解析 defineProperty 与 Proxy

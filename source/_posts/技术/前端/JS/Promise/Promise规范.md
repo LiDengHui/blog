@@ -1,5 +1,5 @@
 ---
-title: Promise原理
+title: Promise规范
 tags:
   - js
   - Promise
@@ -143,3 +143,4 @@ Promise 解决过程是一个抽象的操作, 其需要输入一个 promise 和�
 
 1. [Promise/A+规范 英文原版](https://promisesaplus.com/)
 2. [Promise/A+规范 中文版本](https://www.ituring.com.cn/article/66566)
+3. [Promise 实现](https://sobird.me/promise-getstarted-note.htm)
