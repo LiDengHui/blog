@@ -86,7 +86,7 @@ php yii serve --port=8888
 
 ```
 
-
+```sql
 CREATE TABLE `books` (
   `code` CHAR(11) NOT NULL PRIMARY KEY,
   `name` CHAR(250) NOT NULL,
@@ -103,3 +103,4 @@ INSERT INTO `books` VALUES ('06','WebKit技术内幕','司徒6','北京邮电出
 INSERT INTO `books` VALUES ('07','Node.js：来一打 C++ 扩展','司徒7','北京邮电出版社7');
 INSERT INTO `books` VALUES ('08','深入浅出Node.js','司徒8','北京邮电出版社8');
 INSERT INTO `books` VALUES ('09','HTML5 Canvas核心技术图形动画与游戏开发','司徒9','北京邮电出版社9');
+```

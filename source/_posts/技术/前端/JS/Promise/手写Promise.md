@@ -30,11 +30,8 @@ date: 2020-08-20 23:56:54
         promise
             .then((data) => {
                 expect(data).toBe(1);
-                return 2;
-            })
-            .then((data) => {
-                expect(data).toBe(2);
                 done();
+                return 2;
             });
     });
 ```
@@ -69,11 +66,7 @@ const promise = new MyPromise((resolve, reject) => e => resolve(1));
 4. then 方法 onFulfilled传参 this.value; 并执行 resolve 方法 
 ```js
     then(onFulfilled, onRejected) {
-        const promise = new MyPromise((resolve, reject) => {
-          resolve(onFulfilled(this.value));
-        });
-
-        return promise;
+        onFulfilled(this.value);
     }
 ```
 
@@ -88,12 +81,8 @@ const promise = new MyPromise((resolve, reject) => e => resolve(1));
         promise
             .then((data) => {
                 expect(data).toBe(1);
-                return 2;
-            })
-            .then((data) => {
-                expect(data).toBe(2);
                 done();
-            });
+            })
     });
 ```
 
@@ -102,17 +91,13 @@ const promise = new MyPromise((resolve, reject) => e => resolve(1));
 1. 如果 Promise 在 PENDING 状态,数据还没有回来,就要创建缓存队列 resolveCallbacks,缓存 then 中接收到的方法.
 ```js
     then(onFulfilled, onRejected) {
-        const promise = new MyPromise((resolve, reject) => {
-            if (this.state === MyPromise.PENDING) {
-                this.resolveCallbacks.push((value) => {
-                    resolve(onFulfilled(value));
-                });
-            } else if (this.state === MyPromise.FULFILLED) {
-                resolve(onFulfilled(this.value));
-            }
-        });
-
-        return promise;
+        if (this.state === MyPromise.PENDING) {
+            this.resolveCallbacks.push((value) => {
+                onFulfilled(value);
+            });
+        } else if (this.state === MyPromise.FULFILLED) {
+            onFulfilled(this.value));
+        }
     }
 ```
 2. 当创建实例时异步调用 resolve() 时, 要遍历 resolveCallbacks,并执行其方法, 传入 this.value 的值. 
@@ -141,7 +126,7 @@ const promise = new MyPromise((resolve, reject) => e => resolve(1));
         });
     });
 ```
-# 功能点03: resolve 只有第一次生效, 多次在实例化 promise 时后面的 resolve 不生效
+# 功能点 03: resolve 只有第一次生效, 多次在实例化 promise 时后面的 resolve 不生效
 
 测试用例:
 
@@ -177,4 +162,84 @@ const resolve = (value) => {
 };
 ```
 2. 同样的,reject 也只允许调用一次
+
+# 功能点 04: 支持链式调用
+
+测试用例:
+
+```js
+    it("链式调用", (done) => {
+        const promise = new MyPromise((resolve, reject) =>
+            setTimeout(resolve, 0, 1)
+        );
+
+        const arr = [];
+        promise
+            .then((data) => {
+                arr.push(data);
+                return 2;
+            })
+            .then((data) => {
+                arr.push(data);
+            });
+        setTimeout(() => {
+            expect(arr.toString()).toBe("1,2");
+            done();
+        }, 100);
+    });
+```
+
+解决方案:
+
+1. 根据使用 Promise 的规范, then 后返回一个新的 promise,所以可以在 then 中 new 一个新的 Promise,并 resolve onFulFilled 的返回结果
+
+```js
+    then(onFulfilled, onRejected) {
+        const promise2 = new Promise((resolve, reject) => {
+            if (this.state === MyPromise.PENDING) {
+                this.resolveCallbacks.push((value) => {
+                    resolve(onFulfilled(value));
+                });
+
+                this.rejectCallbacks.push((value) => {
+                    resolve(onRejected(value));
+                });
+            } else if (this.state === MyPromise.FULFILLED) {
+                onFulfilled(this.value);
+            } else if (this.state === MyPromise.REJECTED) {
+                this.rejectCallbacks.push((value) => {
+                    resolve(onRejected(value));
+                });
+            }
+        });
+
+        return promise2;
+    }
+```
+# 功能点 05: 支持空的 then
+
+测试用例:
+
+```js
+    it("支持空 then", (done) => {
+        const promise = new MyPromise((resolve, reject) =>
+            setTimeout(resolve, 0, 1)
+        );
+
+        const arr = [];
+        promise.then().then((data) => {
+            arr.push(data);
+        });
+        setTimeout(() => {
+            expect(arr.toString()).toBe("1");
+            done();
+        }, 100);
+    });
+```
+
+解决方案:
+
+1. 
+
+
 

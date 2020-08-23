@@ -13,13 +13,26 @@ date: 2020-08-16 22:09:15
 
 ### 启动mysql
 
-**sudo /usr/local/mysql/support-files/mysql.server start**
+1. sudo /usr/local/mysql/support-files/mysql.server start**
 
 ### 停止mysql
 
-**sudo /usr/local/mysql/support-files/mysql.server stop**
+1. sudo /usr/local/mysql/support-files/mysql.server stop**
 
 ### 重启mysql
 
-**sudo /usr/local/mysql/support-files/mysql.server restart**
+1. sudo /usr/local/mysql/support-files/mysql.server restart**
 
+
+
+## 服务管理命令
+
+```bash
+
+brew services start mysql
+brew services run mysql
+brew services stop mysql
+```
+
+# 参考资料
+[mysql启动关闭服务](https://www.jianshu.com/p/eee8a7de179c)
