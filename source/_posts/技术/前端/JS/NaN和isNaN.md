@@ -1,4 +1,3 @@
-
 ---
 title: NaN和isNaN
 date: 2019-08-05 16:29:13
@@ -38,7 +37,7 @@ NaN（NotaNumber，非数）是计算机科学中数值数据类型的一类值�
 
     Number(undefined) = NaN
     Number("12343") = 12343
-    Number("12343A) = NaN
+    Number("12343A") = NaN
     Number("true") = 1
     Number({}) = NaN
     Number([]) = 0
