@@ -43,9 +43,10 @@ interface Props {
 }
 /**
  * @params obj: 修改对象
+ * @params key: 要修改的值
  * @params Props:
  */
-Object.defineProperties(obj, props: Props)
+Object.defineProperties(obj,key, props: Props)
 ```
 
 描述符可以有的属性
@@ -238,6 +239,7 @@ p.name
 ```
 
 console
+![](./Vue解析-defineProperty与Proxy/2020-09-03-23-23-07.png)
 
 ![](./Vue解析-defineProperty与Proxy/2020-07-09-22-17-55.png)
 
