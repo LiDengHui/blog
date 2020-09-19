@@ -66,3 +66,7 @@ date: 2016-11-07 10:33:36
 　　authtoken用于设置登录ngrok的授权码，可以在ngrok首页的dashboard中查看到。inspect_addr用于设置监听ip，比如设置为0.0.0.0:8080意味着监听本机所有ip的8080端口上。ngrok也支持自己架设ngrokd服务器，在配置中通过server_addr: “dorole.com:8081″来指定自己搭建的服务器地址。设置trust_host_root_certs: true来支持TLS加密协议的证书信任。ngrok支持http proxy，可以将ngrok配置成一个http代理，这在本机网络受限制的地方用比较合适。
 
 
+# 域名
+
+> 3w429299t4.zicp.vip
+http://34ji293130.wicp.vip/github-webhook/

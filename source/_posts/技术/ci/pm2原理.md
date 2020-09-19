@@ -35,3 +35,32 @@ pm2 一个进程管理工具, 可以用它来管理 node 进程,并查看 node �
 
 # 原理
 
+使用 Cluster 模块 实现
+
+简易版 DEMO
+
+```js
+// master
+var cluster = require('cluster');
+var numCPUs = require('os').cpus().length;
+ 
+if (cluster.isMaster) {
+    console.log(numCPUs);
+    for (var i = 0; i < numCPUs; i++) {
+        var worker = cluster.fork();
+    }
+} else {
+    require("./app.js");
+}
+```
+```js
+// work
+var http = require('http');
+http.createServer(function(req, res) {
+    res.writeHead(200);
+    res.end("hello world\n");
+}).listen(8000);
+```
+# 参考链接
+[pm2 原理](https://segmentfault.com/a/1190000021230376)
+
