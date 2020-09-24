@@ -396,3 +396,35 @@ console
 ![](./Vue解析-defineProperty与Proxy/2020-07-10-05-15-55.png)
 
 由此可见：在 vue3 中使用了 Proxy 也没有解决触发多次 set 事件的问题。
+
+vue3完整示例
+
+```js
+function reactive(data) {
+    if (typeof data !== 'object' || data == null) {
+        return data
+    }
+
+    const observed = new Proxy(data, {
+        get(target, key, receiver) {
+            let result = Reflect.get(target, key, receiver)
+
+            return typeof result !== 'object' ? result : reactive(result)
+        },
+
+        set(target, key, value, receiver) {
+            effective()
+            const ret = Refect.set(target, key, value, receiver)
+            return ret
+        },
+
+        deleteProperty(target, key) {
+            const ret = Refect.deleteProperty(target, key)
+            return ret
+        },
+    })
+
+    return observed
+}
+
+```
