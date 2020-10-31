@@ -1,0 +1,13 @@
+{
+    "name": "reactive",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {},
+    "devDependencies": {},
+    "scripts": {
+        "start:vue2": "vue serve ./watch-demo-vue2.vue"
+    },
+    "author": "",
+    "license": "ISC"
+}
