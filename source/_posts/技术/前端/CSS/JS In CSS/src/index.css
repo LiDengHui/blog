@@ -1,0 +1,16 @@
+:root {
+    --color: red;
+}
+
+:global(.title) {
+    color: green;
+}
+.test {
+    width: 500px;
+    height: 500px;
+    background: var(--color);
+}
+
+.bb {
+    color: 12;
+}
