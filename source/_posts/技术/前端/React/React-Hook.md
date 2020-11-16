@@ -4,9 +4,95 @@ date: 2020-04-01 13:41:43
 tags:
 ---
 
+Hook 是React 16.8的新增特性, 它可以在不编写class的情况下使用state以及其他React特性
+
+Hooks增加了函数式组件中`state`的使用,在之前函数式组件是无法拥有自己的状态的,只能通过 **props** 以及 **context** 来渲染自己的UI, 而在业务逻辑中, 有些场景必须要使用到 state, 那么 我们就只能将函数式组件定义为class 组件.而现在通过 Hook, 我们可以轻松的在函数式组件中保护我们的状态, 不需要更改为class组件
+
+
+## 存在问题Class
+
+1. 组件间复用状态逻辑很难
+2. 复杂组件变得难以理解,高阶组件和函数组件的嵌套过深
+3. class组件存在this指向的问题
+4. 难以记忆生命周期
+
+
+## Hooks解决的问题
+
+**React Hooks** 要解决的问题是状态共享, 这里的状态共享是指只共享状态逻辑复用,并不是数据之间的共享.我们知道在React Hooks之间,解决状态逻辑复用问题, 我们通常使用higher-order components 和 render-props.
+
+> Hook 最大的优势其实还是对于状态逻辑的复用便捷,还有代码的简洁,以及帮助函数组件增强功能
+
+## 实现原理
+
+```ts
+type Hooks = {
+    memoizedState: any; // 指向当前渲染节点 Fiber
+    baseState: any; // 初始化 initialState, 已经每次dispatch 之后 newState
+    baseUpdate: Update<any> | null; // 当前需要更新的Update, 每次更新完之后,会赋值上一个 update, 方便 react 在渲染错误的边缘,数据回溯
+    queue: UndateQueue<any> | null; // UndateQueue 通过
+    next: Hook | null; // link 到下一个hooks, 通过next 串联每一个 hooks
+};
+
+type Effect = {
+    tag: HookEffectTag; // effectTag 标记当前hook作用在 life-cycles 的哪一个阶段
+    create: () => mixed; // 初始化 callback
+    destroy: (() => mixed) | null;
+    deps: Array<mixed> | null;
+    next: Effect;
+};
+```
+
+Reack Hooks 全局维护了一个workInProgressHook变量, 每一次调用 Hooks API 都会首先调取 createWorkInProgressHooks函数
+
+```ts
+function createWorkInProgressHook(): Hook {
+  if (workInProgressHook === null) {
+    // This is the first hook in the list
+    if (firstWorkInProgressHook === null) {
+      isReRender = false;
+      firstWorkInProgressHook = workInProgressHook = createHook();
+    } else {
+      // There's already a work-in-progress. Reuse it.
+      isReRender = true;
+      workInProgressHook = firstWorkInProgressHook;
+    }
+  } else {
+    if (workInProgressHook.next === null) {
+      isReRender = false;
+      // Append to the end of the list
+      workInProgressHook = workInProgressHook.next = createHook();
+    } else {
+      // There's already a work-in-progress. Reuse it.
+      isReRender = true;
+      workInProgressHook = workInProgressHook.next;
+    }
+  }
+  return workInProgressHook;
+}
+```
+
+Hooks 的串联不是一个数组, 是一个链式的数据结构, 从跟节点 workInProgressHook 向下通过next 进行 串联, 这也就是 为什么 Hooks不能嵌套使用,不能在判断条件中使用,不能在循环中使用,否则回破坏链式结构
+
+## class 与 hooks的生命周期对应关系
+
+| class组件                | Hooks组件                |
+| ------------------------ | ------------------------ |
+| constructor              | useState                 |
+| getDerivedStateFromProps | useState里面的update函数 |
+| shouldComponentUpdate    | useMemo                  |
+| render                   | 函数本身                 |
+| componentDidMount        | useLayoutEffect          |
+| componentDidUpdate       | useEffect                |
+| componentWillUnmount     | useEffect里面返回的函数  |
+| componentDidCatch        | 无                       |
+| getDerivedStateFromError | 无                       |
+
 ## setState
 
-    const [state, setState] = useState(initialState);
+```js
+const [state, setState] = useState(initialState);
+```
 
 setState 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。
 
