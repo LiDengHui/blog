@@ -1,5 +1,5 @@
 const path = require("path");
-
+const DtsBundlePlugin = require("./plugin/dtsBundlePlugin")
 module.exports = {
     entry: "./src/index.ts",
     module: {
@@ -14,6 +14,9 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js"],
     },
+    plugins: [
+        new DtsBundlePlugin({})
+    ],
     output: {
         filename: "bundle.js",
         path: path.resolve(__dirname, "dist"),

@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "./dist/",
+        "outDir": "./dist",
         "noImplicitAny": true,
         "experimentalDecorators": true,
-        "module": "es6",
+        "declaration": true,
+        "module": "umd",
         "target": "es6",
         "jsx": "react",
-        "allowJs": true
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]

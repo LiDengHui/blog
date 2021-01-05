@@ -11,7 +11,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "webpack": "^5.4.0"
+        "dts-bundle": "^0.7.3",
+        "dtsmake": "0.0.10",
+        "tern": "^0.24.3",
+        "webpack": "^5.11.1"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.12.1",

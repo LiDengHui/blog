@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Document</title>
+        <style>
+            @font-face {
+                font-family: "iconfont";
+                src: url("iconfont.eot?t=1609857827133"); /* IE9 */
+                src: url("iconfont.eot?t=1609857827133#iefix")
+                        format("embedded-opentype"),
+                    /* IE6-IE8 */
+                        url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAL8AAsAAAAABygAAAKwAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCfgqCCIIDATYCJAMMCwgABCAFhG0HRhtRBiMR9mLtqZL9xYHd7GOHEl8OyiyIJZMBOaCf8SLsy817cC8c3PsgwrWqOsnO5YhAEcETuneIEhAdgyb7LF/v2lw3+yhsk2mWb9GjHrUHgy5dnwIAVbhU+KI2w6tySFz0x7JjvmQ+zzHTpQ8wP9BcKsO255GAa+CBdeKohUvgxPiGsZsIHuBpCOBFnBxS39jej8UAJgkgy5csmsEWAhiMk7YITsNKg+zHhVU71DvDPv55+VNmQeHSgJndCxvmqf5x9Mcxvd69fpwSEC5nA5x1oIEcYEAGGx3daJnIofGKEoYUHGuQwI9jbvePo1Rw2H94ICgQB5DpA0CGLldPJMQKHk2or0EBoAFwZKobCF9raEKmzoziVdyfvxupgb548EAI2ewDF86Eub/OnTsUnsE5dPiy9rND298vRo7d82W/Fl66f+TO0/tccLBlx/7diRe7vfvUnVsT18funph8EIMXe3YcXLIOexEzdHNl8b+M2bc78W+NQy7lSm6hjcN3GO+kAhGtvOoL/4sIENg3sfPClH/5f+ttAPgadSTWDIbhKntjToGfLBxYYWIxMGoTCrAgdWlyJ9oU6DzXjRt4gnyfrgodHAPBFoQOFB7EQmNJIRpqDlx4UwIHSxW8yNa03ptga9GI8QSybNEgBLgOhR8PoQnwnmio3+AizD84BKThxaAE7+hNWi/96ihYK3bQ/MG3PBEy60pk39C+h1ryYk5/oSw+DEWal9NXnFCWmLN8bKlKQMIjXLTzcBgYZuGAraZOdT5kGTVdKW15NCtzFKwVO2j+4FueiNbXVeX9N7TvoZaOnBHnC2XxvUOR5gOIV8U0KOdRLlk+tlQlIOERLtowHAaGuXlYwFZTNyE2HzJYi4Yq0u1V4w/kOwWA/jpSosWwankY7rLL87RXtIS83hg=")
+                        format("woff2"),
+                    url("iconfont.woff?t=1609857827133") format("woff"),
+                    url("iconfont.ttf?t=1609857827133") format("truetype"),
+                    /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+                        url("iconfont.svg?t=1609857827133#iconfont")
+                        format("svg"); /* iOS 4.1- */
+            }
+
+            * {
+                font-family: "iconfont" !important;
+                font-size: 30px;
+                font-style: normal;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            input {
+                appearance: none;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+
+            :root {
+                --main: #ffa822;
+                --basic: #999;
+            }
+
+            .rate-content {
+                font-family: "iconfont";
+                font-size: 30px;
+                padding-right: 10px;
+                display: flex;
+                flex-flow: row-reverse;
+                float: left;
+            }
+
+            .rate-content input[name="rate"]::after {
+                content: "\e79d";
+                color: var(--basic);
+                transition: color 0.4s ease;
+            }
+
+            input[name="rate"]:checked::after,
+            input[name="rate"]:hover::after,
+            input[name="rate"]:checked ~ input[name="rate"]:after,
+            input[name="rate"]:hover ~ input[name="rate"]:after {
+                content: "\e79e";
+                color: var(--main);
+            }
+            input[name="rate"] {
+                transition: transform 0.4s ease;
+            }
+
+            input[name="rate"]:checked,
+            input[name="rate"]:hover {
+                transform: scale(1.2);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="rate-content">
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+            <input type="radio" name="rate" />
+        </div>
+    </body>
+</html>
