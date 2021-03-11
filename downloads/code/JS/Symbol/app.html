@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function Symbol1() {
+                return this;
+            }
+
+            Object.defineProperty(Symbol1.prototype, "toString", {
+                value: function toString() {
+                    return "123";
+                },
+                description: 123,
+            });
+
+            var a = new Symbol1();
+            obj = {
+                [a]: "name",
+                a: "name",
+            };
+            Object.defineProperty(Object, "getOwnPropertyNames", {
+                value: function (a) {
+                    return ["a"];
+                },
+            });
+
+            console.log(obj.hasOwnProperty([a]));
+            console.dir(obj);
+            console.log(Object.getOwnPropertyNames(obj));
+            console.log(JSON.stringify(obj));
+        </script>
+    </body>
+</html>

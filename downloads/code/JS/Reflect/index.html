@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var data = {
+                name: {
+                    first: '张',
+                    content: '三',
+                },
+            }
+
+            var p = defineReactive(data)
+
+            function defineReactive(data) {
+                const result = data
+
+                const p = new Proxy(result, {
+                    set(obj, prop, value) {
+                        console.log(`set`, prop, value)
+                        obj[prop] = value
+                    },
+                    get(obj, prop) {
+                        console.log(obj)
+                        console.log(`get`, prop, obj[prop])
+
+                        return defineReactive(Reflect.get(obj, prop))
+                    },
+                })
+
+                return p
+            }
+
+            p.name.first = '李'
+            p.name.content = '四'
+        </script>
+    </body>
+</html>
